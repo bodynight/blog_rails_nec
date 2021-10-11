@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog on NEC</title>
+    <!-- Bootstrap CSS (jsDelivr CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+  <!-- Bootstrap Bundle JS (jsDelivr CDN) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,20 +16,75 @@
   </head>
 
   <body>
+      <div class="container">
 
-    <div id="user_nav">
-      <% if user_signed_in? %>
-        Hello  <i><%= current_user.username %></i> , Not you? 
-        <%= link_to 'Sign out',destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %>
-      <% end %>
+        <div class="row"> 
 
-    </div>
+          <div class="col-8">  
+           <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link disabled"  tabindex="-1" aria-disabled="true">Blog on NEC</a>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Home", home_index_path, class: "nav-link #{request.fullpath == home_index_path ? 'active' : '' }" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Articles", articles_path, class: "nav-link #{request.fullpath == articles_path ? 'active' : '' }" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Articles new", new_article_path, class: "nav-link #{request.fullpath == new_article_path ? 'active' : '' }" %>
+              </li>              
+            </ul>
+          </div>
+          <div class="col-4">
+            <ul class="nav nav-tabs justify-content-end">
+                
+              <% if user_signed_in? %>
+
+                <li class="nav-item">
+                  <a class="nav-link disabled"> Hello  <i><%= current_user.username %></i> , Not you?</a> 
+                </li>
+
+                <li class="nav-item">              
+                  <%= link_to 'Sign out',destroy_user_session_path, method: :delete, class: "nav-link" %>
+                </li>
+
+                <% else %>
+
+                <li class="nav-item">
+                  <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
+                </li>
+
+                <% end %>
+              </ul>
+            </div>
+
+
+        
+
+                 <!-- <div id="user_nav"> 
+                  <% if user_signed_in? %>
+                    Hello  <i><%= current_user.username %></i> , Not you? 
+                    <%= link_to 'Sign out',destroy_user_session_path, method: :delete %>
+                  <% else %>
+                    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %>
+                  <% end %>
+                 </div>  -->
+ 
+            
+
+        </div>
+       <!--  <%= request.fullpath %>  вызов текущего path/url
+        <%= home_index_path %> -->
+
 
        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+       <p class="alert"><%= alert %></p>
 
     <%= yield %>
+  </div>
   </body>
 </html>
