@@ -1,31 +1,42 @@
-<h1><%= @article.title %></h1>
+<h3><%= @article.title %></h3>
 <p>
     <%= @article.text %>
 </p>
 <br/>
-<h2>Comments:</h2>
+<% if user_signed_in? %>
+  <p><%= link_to 'Edit', edit_article_path(@article) %>|
+  <%= link_to 'Destroy', article_path(@article), method: :delete, data: {confirm: 'Are you sure?'} %></p>
+<% end %>
+<h4>Comments:</h4>
 
 <p>
   <% @article.comments.each do |comment| %>
-    <p><i><%= comment.author %></i> : 
-    <%= comment.body %></p>
+    <p><%= comment.body %></p>
+    <p><i>Said <%= comment.author %> at <%= comment.created_at %></i></p>
     <hr/>
   <% end %>
 
 </p>
-<h2>Add comment</h2>
-<%= form_for ([@article, @article.comments.build]) do |f| %>
- 
-  <!-- <p> 
-    <%= f.label :author %> <br />
-    <%= f.text_field :author %>
-  </p> -->
 
-  <p> 
-    <%= f.label :body %> <br />
-    <%= f.text_area :body %>
+<% if user_signed_in? %>
+<!--   <h4>Add comment</h4>
+ -->    <%= form_for ([@article, @article.comments.build]) do |f| %>
+     
+      <!-- <p> 
+        <%= f.label :author %> <br />
+        <%= f.text_field :author %>
+      </p> -->
+
+      <p>
+<!--   <%= f.label :body %> <br />
+ -->    <%= f.text_area :body, class: "form-control form-control-sm", placeholder: "Your comment" %>
+      </p>
+
+      <%= f.submit 'Enter comment', class: "btn btn-primary" %>
+      <%  end %>
+<% else %>
+  <p>
+      Please <%= link_to "Sign in", new_user_session_path %> or <%= link_to "Registered", new_user_registration_path %> to leave comments
   </p>
-
-  <%= f.submit 'Enter comment' %>
-
-<%  end %>
+  
+<% end %>

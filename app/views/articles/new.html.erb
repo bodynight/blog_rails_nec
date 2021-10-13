@@ -1,4 +1,4 @@
-<h1>New articles</h1>
+<h2>New articles</h2>
 
 <%= form_for :article, url: articles_path do |f| %>
 
@@ -14,15 +14,15 @@
 <% end %>  
  
   <p> 
-    <%= f.label :title %> <br />
-    <%= f.text_field :title %>
+    <%= f.label :title, class: "form-label" %> <br />
+    <%= f.text_field :title, class: "form-control form-control-sm" %>
   </p>
 
   <p> 
-    <%= f.label :text %> <br />
-    <%= f.text_area :text %>
+    <%= f.label :text, class: "form-label"  %> <br />
+    <%= f.text_area :text, class: "form-control form-control-sm" %>
   </p>
 
-  <%= f.submit %>
+  <%= f.submit class: "btn btn-primary"%>
 
 <%  end %>
