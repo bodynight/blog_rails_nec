@@ -2,8 +2,9 @@
 <p>
     <%= @article.text %>
 </p>
+<p><i>Author: <%= @article.articlename%> at created: <%= @article.created_at%></i></p>
 <br/>
-<% if user_signed_in? %>
+<% if user_signed_in? && @article.articlename == current_user.username %>
   <p><%= link_to 'Edit', edit_article_path(@article) %>|
   <%= link_to 'Destroy', article_path(@article), method: :delete, data: {confirm: 'Are you sure?'} %></p>
 <% end %>
