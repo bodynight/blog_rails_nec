@@ -22,18 +22,29 @@
 
           <div class="col-8">  
            <ul class="nav nav-tabs">
+              
               <li class="nav-item">
-                <a class="nav-link disabled"  tabindex="-1" aria-disabled="true">Blog on NEC</a>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Home", home_index_path, class: "nav-link #{request.fullpath == home_index_path ? 'active' : '' }" %>
+                <%= link_to "Blog on NEC", home_index_path, class: "nav-link #{request.fullpath == home_index_path ? 'active' : '' }" %>
               </li>
               <li class="nav-item">
                 <%= link_to "Articles", articles_path, class: "nav-link #{request.fullpath == articles_path ? 'active' : '' }" %>
               </li>
               <li class="nav-item">
-                <%= link_to "Articles new", new_article_path, class: "nav-link #{request.fullpath == new_article_path ? 'active' : '' }" %>
-              </li>              
+                <%= link_to "Articles new", new_article_path, class: "nav-link #{
+                 if user_signed_in?
+                      request.fullpath == new_article_path ? 'active' : '' 
+                  else 
+                    'disabled'
+                  end }" %>
+              </li> 
+
+              <li class="nav-item">
+                <%= link_to "About", about_path, class: "nav-link #{request.fullpath == about_path ? 'active' : '' }" %>
+              </li>
+
+              <li class="nav-item">
+                <%= link_to "Terms", terms_path, class: "nav-link #{request.fullpath == terms_path ? 'active' : '' }" %>
+              </li>             
             </ul>
           </div>
           <div class="col-4">
@@ -42,7 +53,7 @@
               <% if user_signed_in? %>
 
                 <li class="nav-item">
-                  <a class="nav-link disabled"> Hi, <i><%= current_user.username %></i> ! </a> 
+                  <%= link_to "Hi, #{current_user.username} !", edit_user_registration_path, class: "nav-link" %>
                 </li>
 
                 <li class="nav-item">              
