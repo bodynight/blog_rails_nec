@@ -10,4 +10,14 @@ RSpec.describe Article, type: :model do
   describe "association" do
     it { should have_many :comments}
   end
+
+  describe "#subject" do
+    it "Returns the article title" do
+      # создаем обьект article хитрым способом
+      article = create(:article, title: 'Lorem Ipsum')
+      # assert, провкрка
+      expect(article.subject).to eq 'Lorem Ipsum'
+    end
+  end
+
 end
