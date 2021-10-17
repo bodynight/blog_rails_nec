@@ -51,6 +51,8 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
   gem 'shoulda-matchers'
+  gem "factory_girl_rails", "~> 4.0"
+
   
 end
 
