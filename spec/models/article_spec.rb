@@ -20,4 +20,15 @@ RSpec.describe Article, type: :model do
     end
   end
 
+  describe "#last_comment" do
+    it "Returns the last comment" do
+      #создаем статью с коментариями
+      article = create(:article_with_comments)
+
+      #проверка
+      expect(article.last_comment.body).to eq "comment body 3"
+    end
+  end
+
+
 end
