@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+  hi: "Hi"
+  contacts:
+    contact_us: "Contact Us!" 
+    thanks: "Thanks!" 
+  articles:
+    comments: "Comments:"  
+    edit_article: "Edit article"

@@ -71,5 +71,9 @@ Shoulda::Matchers.configure do |config|
 end
 
 require 'support/factory_girl'
+require 'capybara/rails'
+require 'support/session_helper'
+require 'support/database_cleaner'
+
 
 

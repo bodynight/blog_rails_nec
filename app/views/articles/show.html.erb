@@ -8,7 +8,7 @@
   <p><%= link_to 'Edit', edit_article_path(@article) %>|
   <%= link_to 'Destroy', article_path(@article), method: :delete, data: {confirm: 'Are you sure?'} %></p>
 <% end %>
-<h4>Comments:</h4>
+<h4><%= t('articles.comments') %></h4>
 
 <p>
   <% @article.comments.each do |comment| %>
@@ -21,7 +21,20 @@
 
 <% if user_signed_in? %>
 <!--   <h4>Add comment</h4>
- -->    <%= form_for ([@article, @article.comments.build]) do |f| %>
+ -->  
+      <% if @coment && @coment.errors.any?%>
+  <p>
+    <ul>
+      <% @coment.errors.full_messages.each do |msg| %>
+       <li id="err"> <%= msg  %></li> 
+
+      <% end %>
+    </ul>
+  </p>
+<% end %>  
+
+
+        <%= form_for ([@article, @article.comments.build]) do |f| %>
      
       <!-- <p> 
         <%= f.label :author %> <br />

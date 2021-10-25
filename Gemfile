@@ -52,7 +52,8 @@ group :test do
   gem 'webdrivers'
   gem 'shoulda-matchers'
   gem "factory_girl_rails", "~> 4.0"
-
+  gem 'i18n'
+  gem 'database_cleaner-active_record'
   
 end
 

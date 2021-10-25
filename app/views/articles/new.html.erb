@@ -6,7 +6,7 @@
   <p>
     <ul>
       <% @article.errors.full_messages.each do |msg| %>
-        <li> <%= msg %></li>
+        <li id="err"> <%= msg %></li>
 
       <% end %>
     </ul>
